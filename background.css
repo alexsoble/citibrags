@@ -1,36 +1,38 @@
-#divvybrags {
-  width: 240px; 
+#bikebrags {
+  width: 180px; 
   height: 100%; 
   position: absolute; 
-  right: 0; 
+  left: 0; 
   top: 0;
-  background-color: #1c9bca;
+  background-color: #04ABE3;
   color: white;
-  z-index: 1;
+  z-index: 100;
   overflow: hidden;
   } 
 
-#divvybrags h2 {
+#bikebrags h2 {
   text-align: center;
+  color: white; 
+  font-size: 30px;
   }
 
-#toggle-divvybrags {
-  float: right; 
-  margin-right: 8px;
+#toggle-bikebrags {
+  float: left; 
+  margin-left: 8px;
   margin-top: 8px;
   font-size: 20px;
   cursor: pointer;
   }
 
-#divvybrags p {
+#bikebrags p {
   text-align: center;
-  width: 220px;
+  width: 160px;
   margin-left: auto;
   margin-right: auto;
   }
 
-.divvybrags-option {
-  font-size: 18px;
+.bikebrags-option {
+  font-size: 16px;
   color: white; 
   cursor: pointer;
   font-weight: bold;
@@ -38,20 +40,7 @@
   padding: 10px;
   }
 
-.divvybrags-option:hover {
-  text-decoration: underline;
-  color: #136787;
-  } 
-
-.bragging-type-option {
-  font-size: 16px;
-  color: white; 
-  cursor: pointer;
-  font-weight: bold;
-  text-decoration: underline;
-  }
-
-.bragging-type-option:hover {
+.bikebrags-option:hover {
   text-decoration: underline;
   color: #136787;
   } 
@@ -60,8 +49,7 @@
   text-align: center;
   }
 
-.notice-area-text {
-  text-align: center;
+.notice-text {
   font-size: 16px;
   font-weight: bold;
   }
