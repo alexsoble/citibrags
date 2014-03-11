@@ -476,23 +476,21 @@ $(function() {
       data: { leaderboard_post : { name: user_name, miles: total_milage, city: "New York", extra_unique_id: window.extra_unique_id, month: window.this_month, year: window.this_year } },
       success: function(data) { 
         leaderboard_html = "";
-        $('#leaderboard').html(leaderboard_html);
         var leaderboard = data["leaderboard"];
-        var leaderboard_size = leaderboard.length;
-        for (var i = 0; i <= leaderboard_size - 1; i++) {
+        for (var i = 0; i <= leaderboard.length - 1; i++) {
           var month = leaderboard[i];
-          var month_length = month.length;
-          var month_name = Object.keys(month)
-          leaderboard_html += "<strong>" + month_name + "</strong><br/><br/>"
-          // for (var i = 0; i <= month_length -1; i++) {
-          //   var leaderboard_entry = month[i]
-          //   var leaderboard_rank = Object.keys(leaderboard_entry)[0];
-          //   var name = leaderboard_entry[leaderboard_rank]["name"];
-          //   var miles = leaderboard_entry[leaderboard_rank]["miles"];
-          //   leaderboard_html += name + ": " + miles + "mi<br/>"
-          // }
+          var month_name = Object.keys(month);
+          leaderboard_html += "<strong>" + month_name + "</strong><br/>";
+          for (var k = 0; k < month[month_name].length; k++) {
+            var leaderboard_entry = month[month_name][k];
+            var rank = Object.keys(leaderboard_entry);
+            var name = leaderboard_entry[rank]["name"];
+            var miles = leaderboard_entry[rank]["miles"];
+            leaderboard_html += rank + ". " + name + ": " + miles + "mi<br/>";
+          }
+          leaderboard_html += "<br/>"
         }
-        $('#leaderboard').html(leaderboard_html);
+        $("#leaderboard").html(leaderboard_html);
         window.posted_to_leaderboard = true; 
       }
     });
