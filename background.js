@@ -52,8 +52,9 @@ $(function() {
 
   // Create sidebar menu
   content_html = "<div id='bikebrags'>";
+  content_html += "<div id='top'></div>";
   content_html += "<div id='bikebrags-body'>";
-  content_html += "<br/><br/><br/><h2>CitiBrags</h2><br/>";
+  content_html += "<h2>CitiBrags</h2><br/>";
   if (window.one_trip_month == false) {
     content_html += "<h5 id='calculate-my-milage' class='bikebrags-option'>Calculating Mileage</h5>";
     content_html += "<h10 id='brag-area'></h10>";
@@ -401,12 +402,12 @@ $(function() {
          },
         yAxis:
           [{ 
-            title: { text: 'Miles This Day', style: { color: '#3DB7E4' } }, 
-            labels: { style: { color: '#3DB7E4' } }
+            title: { text: 'Miles This Day', style: { color: '#003270' } }, 
+            labels: { style: { color: '#003270' } }
           },
           { 
-            title: { text: 'Total Miles Divvied', style: { color: '#FF7518' } }, 
-            labels: { style: { color: '#FF7518' } },
+            title: { text: 'Total Miles Divvied', style: { color: '#04ABE3' } }, 
+            labels: { style: { color: '#04ABE3' } },
             opposite: true,
             min: 0,
           }],
@@ -418,8 +419,8 @@ $(function() {
             }
           },
         series: [
-          { type: 'column', name: 'Miles This Day', data: daily_milage_array, color: '#3DB7E4'},
-          { type: 'spline', name: 'Total Miles', data: cumulative_milage_array, color: '#FF7518', yAxis: 1 }
+          { type: 'column', name: 'Miles This Day', data: daily_milage_array, color: '#003270'},
+          { type: 'spline', name: 'Total Miles', data: cumulative_milage_array, color: '#04ABE3', yAxis: 1 }
           ],
         credits: false
     });

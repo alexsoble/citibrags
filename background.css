@@ -3,19 +3,19 @@ body {
   float: right;
   }
 
-#header {
-  width: 85%
-  float: right;
-}
-
 #bikebrags {
   float: left;
   width: 15%;
-  background-color: #04ABE3;
+  background-color: #003270;
+  /*background-color: #04ABE3;*/
   color: white;
   overflow: hidden;
   z-index: 10 !important; 
   } 
+
+#top {
+  height: 40px;
+}
 
 #bikebrags h2 {
   text-align: center;
