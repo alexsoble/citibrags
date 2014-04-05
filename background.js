@@ -52,21 +52,19 @@ $(function() {
 
   // Create sidebar menu
   content_html = "<div id='bikebrags'>";
-  content_html += "<div id='toggle-bikebrags'>X</div><br/><br/>";
   content_html += "<div id='bikebrags-body'>";
-  content_html += "<h2>CitiBrags</h2><br/>";
+  content_html += "<br/><br/><br/><h2>CitiBrags</h2><br/>";
   if (window.one_trip_month == false) {
-    content_html += "<p id='calculate-my-milage' class='bikebrags-option'>Calculating Mileage</p>";
-    content_html += "<p id='milage-note'></p>";
-    content_html += "<span id='brag-area'></span>";
-    content_html += "<p id='leaderboard-toggle' class='bikebrags-option'>The Leaderboard</p>";
-    content_html += "<p id='leaderboard'></p>";
-    content_html += "<p id='download-csv' class='bikebrags-option'>Download as CSV</p>";
+    content_html += "<h5 id='calculate-my-milage' class='bikebrags-option'>Calculating Mileage</h5>";
+    content_html += "<h10 id='brag-area'></h10>";
+    content_html += "<h5 id='leaderboard-toggle' class='bikebrags-option'>The Leaderboard</h5><br/>";
+    content_html += "<h5 id='leaderboard'></h5>";
+    content_html += "<h5 id='download-csv' class='bikebrags-option'>Download My Data as CSV</h5>";
   } else {
-    content_html += "<p>You only took one trip this month. Not much to brag about, honestly.</p>";
+    content_html += "<h10>You only took one trip this month. Not much to brag about, honestly.</h10>";
   }
   content_html += "</div></div>";
-  $('#content').before(content_html);  
+  $('body').before(content_html);  
 
   window.total_milage = 0; 
   window.trips_calculated = 0;
@@ -91,13 +89,13 @@ $(function() {
             for (var i = 0; i <= leaderboard.length - 1; i++) {
               var month = leaderboard[i];
               var month_name = Object.keys(month);
-              leaderboard_html += "<strong>" + month_name + "</strong><br/>";
+              leaderboard_html += "<h5 style='font-style: italic;'>" + month_name + "</h5><br/>";
               for (var k = 0; k < month[month_name].length; k++) {
                 var leaderboard_entry = month[month_name][k];
                 var rank = Object.keys(leaderboard_entry);
                 var name = leaderboard_entry[rank]["name"];
                 var miles = leaderboard_entry[rank]["miles"];
-                leaderboard_html += rank + ". " + name + ": " + miles + "mi<br/>";
+                leaderboard_html += "<h10>" + rank + ". " + name + ": " + miles + "mi</h10><br/>";
               }
               leaderboard_html += "<br/>"
             }
@@ -210,7 +208,7 @@ $(function() {
             window.my_bikeshare_data[i]["milage"] = milage;
             total_milage += milage;
             trips_calculated += 1;
-            $('#milage-note').html(String(trips_calculated) + " out of " + String(window.my_bikeshare_data.length) + " trips calculated.");
+            $('#milage-note').html("<br/><h10>" + String(trips_calculated) + " out of " + String(window.my_bikeshare_data.length) + " trips calculated.<br/></h10>");
             // When there are no more trips to calculate, post the results in the notice area of the sidebar
             if (trips_calculated === window.my_bikeshare_data.length) {
               postResults(total_milage);
@@ -257,8 +255,11 @@ $(function() {
     //   $('#milage-note').html(milage_note_html);
     // }
 
-    notice_area_html = "<p>Approximate <br/>distance traveled:<br/><span id='total-milage' class='notice-text'>" + window.total_milage + "mi</span></p>";
-    notice_area_html += "</p><p>Time Biking:<br/><span class='notice-text'>" + window.total_hours + "h, " + window.remainder_minutes + "m, " + window.remainder_seconds + "s</span></p>";
+    notice_area_html = "<h10>Approximate distance traveled:<br/><br/><h10 id='total-milage' class='notice-text'>" + window.total_milage + "mi</h10></h10><br/><br/>";
+    notice_area_html += "<h10>Time Biking:<br/><br/>"
+    notice_area_html += "<h10 class='notice-text'>"
+    notice_area_html += window.total_hours + "h, " + window.remainder_minutes + "m, " + window.remainder_seconds + "s"
+    notice_area_html += "</h10></h10><br/>";
     
     $('#calculate-my-milage').html(window.this_month + " Stats");
     $('#calculate-my-milage').attr("style","text-decoration: underline;");
@@ -271,22 +272,21 @@ $(function() {
     var twitter_img = chrome.extension.getURL("twitter_logo_white.png");
     var star_img = chrome.extension.getURL("star_icon_white.png");
 
-    var brag_html = "<br/><p><a class='bikebrags-option' target='_blank' href='";
+    var brag_html = "<br/><a class='bikebrags-option' target='_blank' href='";
     twitter_link = "https://twitter.com/share?text=My " + window.this_month + " bikeshare stats:%20" 
     twitter_link += window.total_milage + "%20miles,%20"
     twitter_link += window.number_of_trips + "%20trips,%20" 
     twitter_link += window.total_hours + "%20hrs,%20" + window.remainder_minutes + "%20min,%20" + window.remainder_seconds + "%20sec%20" 
     twitter_link += "via&url=http://citibrags.com&hashtags=CitiBrags,CitiBikes,bikeNYC,BikeShareBrags";
-    twitter_link += "'>Brag on Twitter</a>";
+    twitter_link += "'><h5>Brag on Twitter</h5></a>";
     brag_html += twitter_link
+    brag_html += "<img src='" + twitter_img + "' width='24px' height='24px' class='icon'/></a>";
     brag_html += "<br/>";
-    brag_html += "<img src='" + twitter_img + "' width='24px' height='24px' style='margin-top: 10px;'/></a></p>";
-    brag_html += "<p id='username-area'></p>"
-    brag_html += "<span id='post-to-leaderboard'>"
-    brag_html += "<p id='post-to-leaderboard' class='bikebrags-option'>Post to the Leaderboard";
+    brag_html += "<h10 id='username-area'></h10>"
+    brag_html += "<h5 id='post-to-leaderboard' class='bikebrags-option'>Post to the Leaderboard";
     brag_html += "<br/>";
-    brag_html += "<img src='" + star_img + "' width='32px' height='32px' style='margin-top: 6px;'/></p>";
-    brag_html += "</span>";
+    brag_html += "<img src='" + star_img + "' width='32px' height='32px' class='icon'/>";
+    brag_html += "</h5>";
     $('#brag-area').html(brag_html);
 
     window.milage_calculated = true;
@@ -394,7 +394,7 @@ $(function() {
 
     $('#chart-area').highcharts({
         chart: { type: 'column' },
-        title: { text: 'BikeBrags Graph' },
+        title: { text: 'CitiBrags Graph' },
         xAxis: { 
           categories: formatted_dates,
           labels: { maxStaggerLines: 1, rotation: 315, step: number_of_steps }
@@ -453,8 +453,8 @@ $(function() {
     if (window.username === null) {
       $(this).click(function() {
         var total_milage = window.total_milage;
-        enter_leaderboard_name_html = "Enter your name as you'd like it to appear on the Leaderboard: <br/><input id='username-input' type='text' style='width: 140px'/>";
-        enter_leaderboard_name_html += "<br/><a id='post-it' class='bikebrags-option'><br/><i>Post to Leaderboard</i></a>";
+        enter_leaderboard_name_html = "<br/>Enter your name as you'd like it to appear on the Leaderboard: <br/><input id='username-input' type='text'>";
+        enter_leaderboard_name_html += "<br/><a id='post-it' class='bikebrags-option'><br/>Post to Leaderboard</a><br/><br/>";
         $('#username-area').html(enter_leaderboard_name_html);
         $('#post-to-leaderboard').html("");
       });
@@ -490,17 +490,18 @@ $(function() {
         for (var i = 0; i <= leaderboard.length - 1; i++) {
           var month = leaderboard[i];
           var month_name = Object.keys(month);
-          leaderboard_html += "<strong>" + month_name + "</strong><br/>";
+          leaderboard_html += "<h5 style='font-style: italic;'>" + month_name + "</h5><br/>";
           for (var k = 0; k < month[month_name].length; k++) {
             var leaderboard_entry = month[month_name][k];
             var rank = Object.keys(leaderboard_entry);
             var name = leaderboard_entry[rank]["name"];
             var miles = leaderboard_entry[rank]["miles"];
-            leaderboard_html += rank + ". " + name + ": " + miles + "mi<br/>";
+            leaderboard_html += "<h10>" + rank + ". " + name + ": " + miles + "mi</h10><br/>";
           }
           leaderboard_html += "<br/>"
         }
         $("#leaderboard").html(leaderboard_html);
+        $('#username-area').html("");
         window.posted_to_leaderboard = true; 
       }
     });

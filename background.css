@@ -1,20 +1,59 @@
+body {
+  width: 85%;
+  float: right;
+  }
+
+#header {
+  width: 85%
+  float: right;
+}
+
 #bikebrags {
-  width: 180px; 
-  height: 100%; 
-  position: absolute; 
-  left: 0; 
-  top: 0;
+  float: left;
+  width: 15%;
   background-color: #04ABE3;
   color: white;
-  z-index: 100;
   overflow: hidden;
+  z-index: 10 !important; 
   } 
 
 #bikebrags h2 {
   text-align: center;
   color: white; 
   font-size: 30px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
   }
+
+#bikebrags h5 {
+  text-align: center;
+  color: white; 
+  font-size: 18px;
+  font-weight: bold; 
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+h5 a {
+  text-align: center;
+  color: white; 
+  font-size: 18px;
+  font-weight: bold; 
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#bikebrags h10 {
+  text-align: center;
+  color: white; 
+  font-size: 16px;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 #toggle-bikebrags {
   float: left; 
@@ -22,13 +61,6 @@
   margin-top: 8px;
   font-size: 20px;
   cursor: pointer;
-  }
-
-#bikebrags p {
-  text-align: center;
-  width: 160px;
-  margin-left: auto;
-  margin-right: auto;
   }
 
 .bikebrags-option {
@@ -44,6 +76,14 @@
   text-decoration: underline;
   color: #136787;
   } 
+
+#username-input {
+  width: 80%;
+}
+
+.icon {
+  margin: 12px;
+}
 
 #notice-area {
   text-align: center;
