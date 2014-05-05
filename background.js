@@ -8,6 +8,7 @@ $(function() {
   window.time_in_seconds = 0;
   window.small_trips = 0;
   window.one_trip_month = false;
+  window.zero_trips_month = false;
   window.month_names = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"] 
   window.years = ["2013", "2014", "2015", "2016"]
 
@@ -40,8 +41,12 @@ $(function() {
     if (window.my_bikeshare_data.length > 1) {
       window.extra_unique_id = parseInt(window.my_bikeshare_data[0]["trip_id"].substr(3,4) + window.my_bikeshare_data[1]["trip_id"].substr(3,4));
     } else if (window.my_bikeshare_data.length == 1) {
-      window.extra_unique_id = parseInt(window.my_bikeshare_data[0]["trip_id"].substr(3,4) + String(Math.random()).substr(2, 4));
-      window.one_trip_month = true;
+      if (window.my_bikeshare_data[0].start_station != "") {
+        window.extra_unique_id = parseInt(window.my_bikeshare_data[0]["trip_id"].substr(3,4) + String(Math.random()).substr(2, 4));
+        window.one_trip_month = true;
+      } else {
+        window.zero_trips_month = true;
+      }
     }
   }
   scrapeBikeshareData();
@@ -55,14 +60,17 @@ $(function() {
   content_html += "<div id='top'></div>";
   content_html += "<div id='bikebrags-body'>";
   content_html += "<h2>CitiBrags</h2><br/>";
-  if (window.one_trip_month == false) {
+  if (window.one_trip_month == false && window.zero_trips_month == false) {
     content_html += "<h5 id='calculate-my-milage' class='bikebrags-option'>Calculating Mileage</h5>";
     content_html += "<h10 id='brag-area'></h10>";
     content_html += "<h5 id='leaderboard-toggle' class='bikebrags-option'>The Leaderboard</h5><br/>";
     content_html += "<h5 id='leaderboard'></h5>";
     content_html += "<h5 id='download-csv' class='bikebrags-option'>Download My Data as CSV</h5>";
-  } else {
-    content_html += "<h10>You only took one trip this month. Not much to brag about, honestly.</h10>";
+  } else if (window.one_trip_month == true) {
+    content_html += "<br/><br/><h5>You only took one trip this month.<br/><br/>Not much to brag about, honestly.</h5>";
+  } else if (window.zero_trips_month == true) {
+    content_html += "<br/><br/><h5>You didn't take any trips this month.</h5>";
+    content_html += "<br/><br/><br/><h2 style='font-size: 50px'>&#9785;</h2>";    // sad face
   }
   content_html += "</div></div>";
   $('body').before(content_html);  
@@ -289,11 +297,12 @@ $(function() {
     brag_html += "<img src='" + star_img + "' width='32px' height='32px' class='icon'/>";
     brag_html += "</h5>";
     $('#brag-area').html(brag_html);
-
     window.milage_calculated = true;
-    $('#tripTable').before("<div id='chart-area'></div><div id='chart-area-margin'></div>");
 
-    makeChart();        // Create the chart when we post results!
+    if (window.one_trip_month == false && window.zero_trips_month == false) {
+      $('#tripTable').before("<div id='chart-area'></div><div id='chart-area-margin'></div>");
+      makeChart();        // Create the chart if there is more than one trip on the page
+    }
   }
 
   // Read the big CSV file of distances and store in window.lines
