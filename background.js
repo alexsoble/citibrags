@@ -65,7 +65,7 @@ $(function() {
     content_html += "<h10 id='brag-area'></h10>";
     content_html += "<h5 id='leaderboard-toggle' class='bikebrags-option'>The Leaderboard</h5><br/>";
     content_html += "<h5 id='leaderboard'></h5>";
-    content_html += "<h5 id='download-csv' class='bikebrags-option'>Download My Data as CSV</h5>";
+    content_html += "<h5 id='download-csv' class='bikebrags-option'>Download My Data as CSV</h5><br/><br/><br/>";
   } else if (window.one_trip_month == true) {
     content_html += "<br/><br/><h5>You only took one trip this month.<br/><br/>Not much to brag about, honestly.</h5>";
   } else if (window.zero_trips_month == true) {
