@@ -11,7 +11,8 @@
 
   "content_scripts": [
     {
-      "matches": ["https://www.citibikenyc.com/member/trips*"],
+      "matches": ["https://www.
+      citibikenyc.com/member/trips*"],
       "css": ["background.css"],
       "js": [ 
         "jquery.js", 
@@ -31,6 +32,7 @@
     "ajax-loader.gif",
     "twitter_logo_white.png",
     "star_icon_white.png",
+    "leave_a_tip.png",
     "citi_stations.csv",
     "api_key.json"
   ],

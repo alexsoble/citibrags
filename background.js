@@ -65,7 +65,16 @@ $(function() {
     content_html += "<h10 id='brag-area'></h10>";
     content_html += "<h5 id='leaderboard-toggle' class='bikebrags-option'>The Leaderboard</h5><br/>";
     content_html += "<h5 id='leaderboard'></h5>";
-    content_html += "<h5 id='download-csv' class='bikebrags-option'>Download My Data as CSV</h5><br/><br/><br/>";
+    content_html += "<h5 id='download-csv' class='bikebrags-option'>Download My Data as CSV</h5><br/>";
+    var leave_tip_image = chrome.extension.getURL("leave_a_tip.png");
+    content_html += '<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" id="paypal-button">';
+    content_html += '<input type="hidden" name="cmd" value="_s-xclick">';
+    content_html += '<input type="hidden" name="hosted_button_id" value="JKRCJGMR22JM6">';
+    content_html += '<input type="image" src="';
+    content_html += leave_tip_image;
+    content_html += '" border="0" name="submit">';
+    content_html += '</form>';
+
   } else if (window.one_trip_month == true) {
     content_html += "<br/><br/><h5>You only took one trip this month.<br/><br/>Not much to brag about, honestly.</h5>";
   } else if (window.zero_trips_month == true) {
@@ -286,7 +295,7 @@ $(function() {
     twitter_link += window.total_milage + "%20miles,%20"
     twitter_link += window.number_of_trips + "%20trips,%20" 
     twitter_link += window.total_hours + "%20hrs,%20" + window.remainder_minutes + "%20min,%20" + window.remainder_seconds + "%20sec%20" 
-    twitter_link += "via&url=http://citibrags.com&hashtags=CitiBrags,CitiBikes,bikeNYC,BikeShareBrags";
+    twitter_link += "via&url=http://citibrags.com&hashtags=CitiBrags,CitiBikes,bikeNYC";
     twitter_link += "'><h5>Brag on Twitter</h5></a>";
     brag_html += twitter_link
     brag_html += "<img src='" + twitter_img + "' width='24px' height='24px' class='icon'/></a>";

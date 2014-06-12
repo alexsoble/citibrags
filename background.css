@@ -78,6 +78,12 @@ h5 a {
   color: #136787;
   } 
 
+#paypal-button {
+  margin: auto;
+  border: none;
+  width: 120px;
+}
+
 #username-input {
   width: 80%;
 }
